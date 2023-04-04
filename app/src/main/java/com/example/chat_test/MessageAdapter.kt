@@ -1,6 +1,7 @@
 package com.example.chat_test
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
 
         // 이 앱에 로그인 된 사용자(currentUser)의 Uid와 currentMessage에 담겨있는 sendId(Uid)가 같으면 send 반환
         return if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.sendId)){
+//            Log.d("lsy","FirebaseAuth.getInstance().currentUser?.uid :${FirebaseAuth.getInstance().currentUser?.uid}")
             send
             // 그 외 receive 반환
         }else{
@@ -60,12 +62,12 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
         }
     }
 
-    //보낸 쪽 뷰 뿌리기
+    //보낸 쪽 뷰 연결
     class SendViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val sendMessage: TextView = itemView.findViewById(R.id.send_message_text)
     }
 
-    //받는 쪽 뷰 뿌리기
+    //받는 쪽 뷰 연결
     class ReceiveViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val receiveMessage: TextView = itemView.findViewById(R.id.receive_message_text)
     }

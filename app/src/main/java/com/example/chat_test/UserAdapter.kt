@@ -32,7 +32,7 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
         // itemView 아이템 클릭 이벤트
         holder.itemView.setOnClickListener {
 
-            val intent  = Intent(context, ChatActivity::class.java)
+            val intent = Intent(context, ChatActivity::class.java)
 
             //넘길 데이터
             intent.putExtra("name", currentUser.name)
@@ -48,10 +48,9 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
     }
 
     // View 형식의 itemview를 RecyclerView형식으로 itemView 뿌리기
-    //이 코드는 UserViewHolder 클래스를 정의하고 있습니다. UserViewHolder는 RecyclerView.ViewHolder 클래스를 상속받습니다.
+    // UserViewHolder는 RecyclerView.ViewHolder 클래스를 상속받습니다.
     // itemView는 ViewHolder의 각 뷰 객체를 참조합니다. 따라서 itemView.findViewById(R.id.name_text)는
-    // itemView에서 R.id.name_text에 해당하는 TextView를 찾아서 UserViewHolder 클래스 내의 nameText 
-    // 멤버 변수에 할당합니다.
+    // itemView에서 R.id.name_text에 해당하는 TextView를 찾아서 UserViewHolder 클래스 내의 nameText 멤버 변수에 할당합니다.
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         // id 가 name_text 인 뷰를 nameText 객체에 연결하기
         val nameText: TextView = itemView.findViewById(R.id.name_text)

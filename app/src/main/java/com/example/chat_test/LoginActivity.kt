@@ -40,9 +40,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * 로그인
-     */
+    // 로그인
     private fun login(email: String, password: String){
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: UserAdapter
-
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
-
     private lateinit var userList: ArrayList<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //인증 초기화
+        // 사용자 인증 초기화
         mAuth = Firebase.auth
 
         // Firebase 데이터를 받을 객체를 초기화합니다.
@@ -48,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         binding.userRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.userRecyclerView.adapter = adapter
 
-        // "user" 노드에서 addValueEventListener를 사용하여 사용자 정보를 가져옵니다.
-        // ValueEventListener 리스너의 이벤트 콜백 onDataChange(): 이벤트 발생 시점에 특정 경로(mDbRef.child("user"))에 있던 콘텐츠의 정적 스냅샷을 읽고 변경사항을 수신 대기합니다.
+        // ValueEventListener 리스너의 이벤트 콜백 onDataChange():
+        // 이벤트 발생 시점에 특정 경로(mDbRef.child("user"))에 있던 콘텐츠의 정적 스냅샷을 읽고 변경사항을 수신 대기합니다.
         mDbRef.child("user").addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 // 데이터 스냅샷의 모든 하위 노드를 반복합니다.

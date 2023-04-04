@@ -20,8 +20,8 @@ class ChatActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth // 파이어 베이스의 사용자 인증 및 다양한 작업을 위한 객체
     lateinit var mDbRef: DatabaseReference// 파이어 베이스에서 데이터를 읽거나 쓰기 위한 객체
 
-    private lateinit var receiverRoom: String //받는 대화방
-    private lateinit var senderRoom: String //보낸 대화방
+    private lateinit var receiverRoom: String // 받는 대화방
+    private lateinit var senderRoom: String // 보낸 대화방
 
     private lateinit var messageList: ArrayList<Message>
 
@@ -30,7 +30,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //초기화
+        // 초기화
         messageList = ArrayList()
         val messageAdapter: MessageAdapter = MessageAdapter(this, messageList)
 
@@ -71,12 +71,11 @@ class ChatActivity : AppCompatActivity() {
             // push().setValue(messageObject) 보낸 대화방에 데이터 저장
             mDbRef.child("chats").child(senderRoom).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
-                    //addOnSuccessListener 저장 성공하면 받는 대화방에 데이터 저장
+                    // addOnSuccessListener 저장 성공하면 받는 대화방에 데이터 저장
                     mDbRef.child("chats").child(receiverRoom).child("messages").push()
                         .setValue(messageObject)
-
                 }
-            //입력값 초기화
+            //채팅입력창 ""로 초기화
             binding.messageEdit.setText("")
         }
 
@@ -98,7 +97,7 @@ class ChatActivity : AppCompatActivity() {
                         // message변수에 저장된 정보들 messageList에 추가
                         messageList.add(message!!)
                     }
-                    Log.d("lsy", messageList.toString())
+                    Log.d("lsy", "메세지확인 : $messageList")
                     // 변경된 messageList 적용
                     messageAdapter.notifyDataSetChanged()
                 }
